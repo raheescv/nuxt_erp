@@ -599,7 +599,7 @@
 
 useHead({
     script: [
-        { src: "assets/js/vendors/chartjs.js", defer: true },
+        { src: "assets/js/vendors/chartjs.js", defer: false },
         { src: "assets/js/components/simple-line-chart-1.js", defer: true },
         { src: "assets/js/components/report-line-chart.js", defer: true },
         { src: "assets/js/components/report-pie-chart.js", defer: true },
