@@ -49,7 +49,7 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
-                                    Christian Bale
+                                    {{ data.name }}
                                     <div class="ml-auto whitespace-nowrap text-xs text-slate-400">
                                         05:09 AM
                                     </div>
@@ -80,9 +80,9 @@
                     <div data-tw-merge=""
                         class="dropdown-content rounded-md border-transparent p-2 shadow-[0px_3px_10px_#00000017] dark:border-transparent dark:bg-darkmode-600 relative mt-px w-56 bg-theme-1/80 text-white before:absolute before:inset-0 before:z-[-1] before:block before:rounded-md before:bg-black">
                         <div class="p-2 font-medium font-normal">
-                            <div class="font-medium">Christian Bale</div>
+                            <div class="font-medium">{{ data.name }}</div>
                             <div class="mt-0.5 text-xs text-white/70 dark:text-slate-500">
-                                Frontend Engineer
+                                {{ data.email }}
                             </div>
                         </div>
                         <div class="h-px my-2 -mx-2 bg-slate-200/60 dark:bg-darkmode-400 bg-white/[0.08]">
@@ -94,7 +94,7 @@
                         </NuxtLink>
                         <div class="h-px my-2 -mx-2 bg-slate-200/60 dark:bg-darkmode-400 bg-white/[0.08]">
                         </div>
-                        <button @click="logout"
+                        <button type="button" @click="_signOut()"
                             class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item hover:bg-white/5">
                             <Icon name="lucide:toggle-right" /> Logout
                         </button>
@@ -105,3 +105,13 @@
         </div>
     </div>
 </template>
+<script setup>
+const { signOut, getSession, data } = useAuth()
+const _signOut = async () => {
+    try {
+        await signOut({ callbackUrl: '/login', redirect: true, external: true })
+    } catch (error) {
+        console.log(error?.message);
+    }
+}
+</script>

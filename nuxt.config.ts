@@ -2,8 +2,39 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: false },
-  modules: ["@nuxtjs/robots", "@nuxtjs/sitemap", "@nuxt/ui", "@nuxt/icon"],
-  // tailwindcss: {},
+  modules: [
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap",
+    "@nuxt/ui",
+    "@nuxt/icon",
+    "@sidebase/nuxt-auth",
+  ],
+  auth: {
+    globalAppMiddleware: true,
+    baseURL: process.env.NUXT_PUBLIC_API_URL,
+    provider: {
+      type: "local",
+      endpoints: {
+        signIn: { path: "/login", method: "post" },
+        signOut: { path: "/logout", method: "post" },
+        signUp: { path: "/register", method: "post" },
+        getSession: { path: "/session", method: "get" },
+      },
+      pages: {
+        login: "/login",
+      },
+      token: {
+        signInResponseTokenPointer: "/token",
+      },
+      sessionDataType: {},
+    },
+    enableSessionRefreshPeriodically: 5000,
+    enableSessionRefreshOnWindowFocus: true,
+    globalMiddlewareOptions: {
+      allow404WithoutAuth: true, // Defines if the 404 page will be accessible while unauthenticated
+      addDefaultCallbackUrl: "/", // Where authenticated user will be redirected to by default
+    },
+  },
   css: [
     "@/assets/css/main.css",
     // "@/assets/css/vendors/tippy.css",
