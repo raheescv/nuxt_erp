@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const { email, password } = await readBody(event);
   const config = useRuntimeConfig();
 
-  const response = await fetch(config.public.apiBase + `/api/v1/login`, {
+  const response = await fetch(config.public.apiBaseUrl + `/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

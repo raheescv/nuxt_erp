@@ -103,6 +103,7 @@ export default defineNuxtConfig({
     currencyKey: process.env.CURRENCY_API_KEY,
     public: {
       apiBase: process.env.API_BASE_URL,
+      apiBaseUrl: process.env.API_BASE_URL + "/api/v1",
     },
   },
 });

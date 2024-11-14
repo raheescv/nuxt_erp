@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   if (!token) {
     throw new Error("Unauthorized");
   }
-  const response = await fetch(config.public.apiBase + `/api/v1/user`, {
+  const response = await fetch(config.public.apiBaseUrl + `/user`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
