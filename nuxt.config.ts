@@ -11,7 +11,6 @@ export default defineNuxtConfig({
   ],
   auth: {
     globalAppMiddleware: true,
-    baseURL: process.env.NUXT_PUBLIC_API_URL,
     provider: {
       type: "local",
       endpoints: {
@@ -102,7 +101,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     currencyKey: process.env.CURRENCY_API_KEY,
-    apiBase: process.env.API_BASE_URL,
-    apiBaseUrl: process.env.API_BASE_URL + "/api/v1",
+    public: {
+      apiBase: process.env.API_BASE_URL,
+    },
   },
 });
