@@ -2,11 +2,12 @@ import { defineEventHandler, getHeader } from "h3";
 
 export default defineEventHandler(async (event) => {
   const token = getHeader(event, "Authorization")?.replace("Bearer ", "");
+  const config = useRuntimeConfig();
   if (!token) {
     throw new Error("Unauthorized");
   }
 
-  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/user`, {
+  const response = await fetch(`${config.public.apiBaseUrl}/user`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

@@ -2,8 +2,9 @@ import { defineEventHandler, readBody } from "h3";
 
 export default defineEventHandler(async (event) => {
   const { email, password } = await readBody(event);
+  const config = useRuntimeConfig();
 
-  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/login`, {
+  const response = await fetch(`${config.public.apiBaseUrl}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
