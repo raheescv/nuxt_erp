@@ -69,10 +69,7 @@ definePageMeta({
         navigateAuthenticatedTo: '/',
     },
 })
-import { useNuxtApp } from '#app'
 import { ref } from 'vue';
-import { useRouter } from 'vue-router'
-import { navigateTo } from '#imports'
 const { signIn } = useAuth()
 
 const email = ref('rahees@gmail.com')
@@ -80,7 +77,6 @@ const password = ref('asdasd')
 
 const isLoading = ref(false)
 const error = ref(null)
-const router = useRouter()
 
 const submitForm = async () => {
     isLoading.value = true;
@@ -101,6 +97,7 @@ const submitForm = async () => {
             email: email.value,
             password: password.value,
         };
+        console.log(loginData);
         let res = await signIn(loginData, { callbackUrl: '/', external: true })
     } catch (e) {
         error.value = e.message;

@@ -64,7 +64,7 @@ const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.v
 // Fetch data with lazy loading and pagination
 const { data: list, refresh } = await useLazyAsyncData('list', () => {
     const config = useRuntimeConfig();
-    return $fetch(`${config.public.apiBaseUrl}/products/get`, {
+    return $fetch(`${config.apiBaseUrl}/products/get`, {
         method: "POST",
         body: {
             query: search.value,
